@@ -1,43 +1,67 @@
 # Visual verification ledger
 
-Status as of 2026-09-23: **BLOCKED — zero reference captures, zero actual skin
-captures, zero passed screens.** The required Brooklyn `visual-verify` instructions
-have been read; its actual-app comparison loop cannot run yet.
+2026-09-23 resume: **BLOCKED — six reference images inspected, zero actual
+skinned-Hermes captures, zero screens passed.**
 
-Reference Grokbot was not resolved by Computer Use and was absent from the
-discovered app list and standard Applications folders. Thomas has been asked
-for the location. A broad Hermes capture was rejected by automatic approval
-review for private-chat exposure. A narrowed navigation request subsequently
-reported that Computer Use was not approved for Hermes. Access and a safe
-empty/settings surface have been requested; no alternate capture path was used.
+Brooklyn `ui-only`, `ui-system`, `visual-verify` and screenshot-overlay
+instructions were read and applied to the evidence contract. Its skill folder
+is still present in Hermes `skills.external_dirs`.
 
-| Screen or state | Copied from Grokbot | Actual-app evidence | Status |
+The user's approval to use Hermes on an empty chat or Settings is explicit.
+However, the Computer Use runtime rejected direct Settings navigation against
+`/Applications/Hermes.app` with **“Computer Use was not approved to use Hermes.”**
+Discovery confirms the running app's ID is `com.nousresearch.hermes`; that ID
+cannot be targeted because installed backups share it. No alternate screenshot,
+CDP, AppleScript or private-chat route was used. The permission question is
+pending. No user chat was opened or captured.
+
+The required `ai-mac-heavy-job` packaging invocation waited with
+`disk_free_below_15_gib`. Its exact owned waiting process was stopped. No package
+was generated or installed, and the guard was not bypassed or reconfigured.
+
+| Screen/state | Candidate source work | Actual-app comparison | Result |
 | --- | --- | --- | --- |
-| Sidebar / bot roster / sections | Nothing yet | None | BLOCKED |
-| Expanded, collapsed and selected rows | Nothing yet | None | BLOCKED |
-| Empty chat | Nothing yet | None | BLOCKED |
-| Populated chat / bubbles / long messages | Nothing yet | None | BLOCKED |
-| Composer: empty, multiline, attachment | Nothing yet | None | BLOCKED |
-| Typing, loading and disabled states | Nothing yet | None | BLOCKED |
-| Task Dock | Nothing yet | None | BLOCKED |
-| Model menu | Nothing yet | None | BLOCKED |
-| Thinking Level menu | Nothing yet | None | BLOCKED |
-| Queue | Nothing yet | None | BLOCKED |
-| Approval controls | Nothing yet | None | BLOCKED |
-| Context menus / command palette | Nothing yet | None | BLOCKED |
-| Settings / dialogs / errors | Nothing yet | None | BLOCKED |
-| Sessions and split panes | Nothing yet | None | BLOCKED |
-| Update notification / notes / install / recovery | Infrastructure only | None | BLOCKED |
-| Plugin off / native restoration | Nothing installed | None | BLOCKED |
+| Main chat/sidebar | Reference palette, 280px roster, native rows/sections, chat margins and bubbles | No running capture | BLOCKED |
+| Account menu | Native dropdown/popover geometry; profile switching retains its real meaning | No capture; Grokbot account/billing actions have no established native equivalent | BLOCKED |
+| Settings General | Native overlay shell, 198px rail, spacing and appearance fields; native Settings navigation | No capture; native grouping differs from Grokbot account/system sections | BLOCKED |
+| Settings Computer | Shared native overlay styling only | No capture; no established Hermes egress control | BLOCKED |
+| New chat/picker | Empty native chat/composer retained | Grokbot recipient picker not implemented; no public native picker opener | BLOCKED |
+| Plugins | Native navigation and overlay shell retained | Native catalog is a cross-origin iframe, not a restylable featured grid | BLOCKED |
+| Composer empty/multiline/attachment | Pill surface and native input/buttons; model, Thinking and status controls retained | No capture or native interaction checks | BLOCKED |
+| Typing/loading | Native loading container styled; no simulated activity | Missing reference and live capture | BLOCKED |
+| Sections collapse/selection | Native state/handlers retained | Missing reference and live capture | BLOCKED |
+| Task Dock | Styles existing kit-owned dock, no duplicate store | Missing reference and live capture | BLOCKED |
+| Models / Thinking / Queue / approvals / sessions | No state writes or handler replacement | Not functionally exercised | BLOCKED |
+| Menus / palette / errors / split panes | Native behavior retained in source | Missing reference and live capture | BLOCKED |
+| In-app update / recovery | Existing controller wired to SDK composer slots | Mocked updater tests only; no live release or hot reload | BLOCKED |
+| Plugin off / stock restoration | Owned attributes/styles and observers disposed; storage race fixed | Lifecycle tests pass; screenshot and native interaction proof absent | BLOCKED |
 
-Expand this inventory from the actual Grokbot walkthrough; it is not evidence
-that the list covers every screen. Any Hermes-only controls should retain their
-native behavior and be explicitly distinguished from matched reference states.
+## Automated evidence (separate from visual verification)
 
-For each subsequent iteration record: reference and actual app versions, commit,
-state, safe fixture, viewport, DPR, zoom, root font, capture paths, crop/scale
-contract, computed styles/rectangles, overlay/report paths, reviewed deltas,
-remaining defects and any user-accepted deviations. Preserve original captures.
+- 14 lifecycle tests pass: hook loss, hidden/foreign panes, route-gated overlays,
+  unknown-page fallback, exact attribute restoration, startup disabled state,
+  stale storage, exception cleanup and hot-reload ownership.
+- 33 installer/build/updater tests pass: staged verification, identity/digest
+  checks, backups, rollback, bounded downloads, release-channel isolation and
+  reload receipts. These use fixtures and mocked native/network bridges.
+- Visual source JavaScript syntax, installer shell syntax, existing root
+  manifest and whitespace checks pass.
 
-No deviations have been approved. Unit tests or fixture renders must never
-change this ledger to PASS.
+No screenshot overlay artifacts exist, because there is no authorized actual
+capture. No pixel-difference score, measured actual geometry, live compatibility
+claim or approved deviation is asserted. Passing tests never changes a row to
+PASS.
+
+## Next verification pass
+
+1. Enable Computer Use access to `/Applications/Hermes.app`; use only Settings
+   or an empty chat. Keep existing/private chats closed.
+2. Restore heavy-job admission (15 GiB free disk required). Build through the
+   host wrapper, install only this plugin with its staged installer, then reload.
+3. Capture stock and skinned versions at matching dimensions, with capture
+   viewport/DPR/zoom recorded. Inspect each original and run Brooklyn's overlay
+   utility with explicit, justified crop/density conversion only.
+4. Iterate actual layout defects, implement missing native-backed surfaces,
+   obtain missing reference states and resolve unsupported feature differences.
+5. Exercise native controls, plugin-off restoration and a real updater cycle.
+   Commit/push a verified release only when the gate passes.
